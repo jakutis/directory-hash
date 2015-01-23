@@ -13,15 +13,40 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 source-repository head
-  type:     git
-  location: https://github.com/jakutis/directory-hash
+  type:              git
+  location:          https://github.com/jakutis/directory-hash
 
 source-repository this
-  type:     git
-  location: https://github.com/jakutis/directory-hash
-  tag:      0.1.0.0
+  type:              git
+  location:          https://github.com/jakutis/directory-hash
+  tag:               0.1.0.0
+
+library
+  hs-source-dirs:    src
+  default-language:  Haskell2010
+  build-depends:
+    base >=4.7 && <4.8
+  exposed-modules:
+    DirectoryHash.Executable
 
 executable directory-hash
-  main-is:             Main.hs
-  build-depends:       base >=4.7 && <4.8
-  default-language:    Haskell2010
+  hs-source-dirs:    executables
+  default-language:  Haskell2010
+  build-depends:
+    base >=4.7 && <4.8,
+    directory-hash
+  main-is:           Main.hs
+
+test-suite unit-tests-and-properties
+  hs-source-dirs:    test
+  default-language:  Haskell2010
+  build-depends:
+    base,
+    HUnit,
+    QuickCheck,
+    test-framework             >= 0.8,
+    test-framework-hunit,
+    test-framework-quickcheck2,
+    test-framework-th
+  type:              exitcode-stdio-1.0
+  main-is:           Main.hs
