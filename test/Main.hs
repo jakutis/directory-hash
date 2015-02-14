@@ -1,11 +1,8 @@
-import Test.Framework (defaultMain, testGroup)
-import Test.Framework.Providers.HUnit
-import Test.Framework.Providers.QuickCheck2 (testProperty)
+import Test.Hspec
+import System.Exit
+import qualified DirectoryHash.Executable
 
-import Test.QuickCheck
-import Test.HUnit
-
-import Data.List
-
-
-main = defaultMain []
+main = hspec $ do
+  describe "main" $ do
+    it "exits with success" $
+      DirectoryHash.Executable.main `shouldThrow` (== ExitSuccess)
