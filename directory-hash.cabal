@@ -1,5 +1,5 @@
 name:                directory-hash
-version:             0.1.0.0
+version:             0.1.0.2
 synopsis:            Get a hash of all files in directory
 description:         For a given directory and hash function name outputs lines of hash and file path pairs
 homepage:            https://hackage.haskell.org/package/directory-hash
@@ -19,7 +19,7 @@ source-repository head
 source-repository this
   type:              git
   location:          https://github.com/jakutis/directory-hash
-  tag:               0.1.0.0
+  tag:               0.1.0.2
 
 library
   hs-source-dirs:    src
