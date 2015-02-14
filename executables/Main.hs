@@ -1,5 +1,7 @@
 module Main where
 
+import System.Environment
+
 import qualified DirectoryHash.Executable
 
-main = DirectoryHash.Executable.main
+main = getArgs >>= DirectoryHash.Executable.main

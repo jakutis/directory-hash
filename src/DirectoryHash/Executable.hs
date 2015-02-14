@@ -2,4 +2,5 @@ module DirectoryHash.Executable (main) where
 
 import System.Exit
 
-main = exitSuccess
+main :: [String] -> IO ()
+main _ = exitSuccess
