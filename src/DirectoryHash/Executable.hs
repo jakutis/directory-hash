@@ -17,10 +17,15 @@ main (directoryName:_) = do
     Data.ByteString.Lazy.putStr $ encode $ result
     exitSuccess
 
+listFiles :: String -> IO [String]
+listFiles directoryName = do
+    filesIncludingDots <- System.Directory.getDirectoryContents directoryName
+    return $ filter (\file -> file /= "." && file /= "..") filesIncludingDots
+
 findFiles :: String -> IO [String]
 findFiles directoryName = do
-    files <- System.Directory.getDirectoryContents directoryName
-    return $ sort $ filter (\file -> file /= "." && file /= "..") files
+    files <- listFiles directoryName
+    return $ sort $ files
 
 hashFile :: String -> String -> IO (Data.HashMap.Strict.HashMap String String)
 hashFile directoryName name = do
