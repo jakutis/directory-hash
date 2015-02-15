@@ -28,7 +28,9 @@ library
     base >=4.7 && <4.8,
     directory >=1.2 && <1.3,
     SHA >=1.6 && <1.7,
-    bytestring >=0.10 && <0.11
+    bytestring >=0.10 && <0.11,
+    unordered-containers >=0.2 && <0.3,
+    aeson >=0.8 && <0.9
   exposed-modules:
     DirectoryHash.Executable
 
