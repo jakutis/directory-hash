@@ -12,7 +12,7 @@ import System.Exit
 
 main :: [String] -> IO ()
 main [] = exitFailure
-main (directoryName:_) = do
+main [directoryName] = do
     files <- findFiles [] directoryName
     result <- mapM (hashFile directoryName) files
     Data.ByteString.Lazy.putStr $ encode $ result
