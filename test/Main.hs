@@ -27,3 +27,12 @@ main = hspec $ do
     it "produces correct output" $ do
       System.Directory.createDirectoryIfMissing False "./test/fixtures/empty"
       capture_ (catch (DirectoryHash.Executable.main ["./test/fixtures/empty"]) ((\_ -> return ()) :: ExitCode -> IO ())) `shouldReturn` "[]"
+
+  describe "main, called with [\"./test/fixtures/cd\"]" $ do
+    it "produces correct output" $
+      let
+      c = "{\"sha512\":\"acc28db2beb7b42baa1cb0243d401ccb4e3fce44d7b02879a52799aadff541522d8822598b2fa664f9d5156c00c924805d75c3868bd56c2acb81d37e98e35adc\",\"name\":\"c\"}"
+      d = "{\"sha512\":\"48fb10b15f3d44a09dc82d02b06581e0c0c69478c9fd2cf8f9093659019a1687baecdbb38c9e72b12169dc4148690f87467f9154f5931c5df665c6496cbfd5f5\",\"name\":\"d\"}"
+      in
+      capture_ (catch (DirectoryHash.Executable.main ["./test/fixtures/cd"]) ((\_ -> return ()) :: ExitCode -> IO ())) `shouldReturn` ("[" ++ c ++ "," ++ d ++ "]")
+
