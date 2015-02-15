@@ -5,6 +5,7 @@ import qualified Data.ByteString.Lazy
 import qualified Data.ByteString.Lazy.Char8
 import Data.Digest.Pure.SHA
 import qualified Data.HashMap.Strict
+import Data.List
 import qualified System.Directory
 import System.Exit
 
@@ -19,7 +20,7 @@ main (directoryName:_) = do
 findFiles :: String -> IO [String]
 findFiles directoryName = do
     files <- System.Directory.getDirectoryContents directoryName
-    return $ filter (\file -> file /= "." && file /= "..") files
+    return $ sort $ filter (\file -> file /= "." && file /= "..") files
 
 hashFile :: String -> String -> IO (Data.HashMap.Strict.HashMap String String)
 hashFile directoryName name = do
