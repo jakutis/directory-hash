@@ -7,14 +7,28 @@ import qualified Data.HashMap.Strict
 import Data.List
 import System.Directory
 import System.Exit
+import System.IO
 
 main :: [String] -> IO ()
 main [] = exitFailure
 main [directoryName] = do
     files <- deepListFiles directoryName ""
-    result <- mapM (hashFile directoryName) files
+    result <- hashFiles directoryName files (length files)
     Data.ByteString.Lazy.putStr $ encode $ result
     exitSuccess
+
+showProgress :: Int -> IO ()
+showProgress left = do
+    hPutStrLn stderr $ show left
+    hFlush stderr
+
+hashFiles :: String -> [String] -> Int -> IO [Data.HashMap.Strict.HashMap String String]
+hashFiles _ [] _ = return []
+hashFiles directoryName (file:files) left = do
+    showProgress left
+    result <- hashFile directoryName file
+    results <- hashFiles directoryName files (left - 1)
+    return $ result : results
 
 deepListFiles :: String -> String -> IO [String]
 deepListFiles pathPrefix path = do
