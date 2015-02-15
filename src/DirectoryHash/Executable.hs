@@ -12,13 +12,14 @@ main :: [String] -> IO ()
 main [] = exitFailure
 main (directoryName:_) = do
     files <- getDirectoryContents directoryName
-    hashFiles directoryName (filter (\file -> file /= "." && file /= "..") files)
+    result <- hashFiles directoryName (filter (\file -> file /= "." && file /= "..") files)
+    Data.ByteString.Lazy.putStr $ encode $ result
     exitSuccess
 
-hashFiles :: String -> [String] -> IO ()
-hashFiles directoryName [] = putStr "[]"
+hashFiles :: String -> [String] -> IO [Data.HashMap.Strict.HashMap String String]
+hashFiles directoryName [] = return []
 hashFiles directoryName (name:_) = do
     content <- Data.ByteString.Lazy.readFile $ directoryName ++ "/" ++ name
     let
       hash = showDigest $ sha512 content
-      in Data.ByteString.Lazy.putStr $ encode $ [Data.HashMap.Strict.fromList [("name", name), ("sha512", hash)]]
+      in return [Data.HashMap.Strict.fromList [("name", name), ("sha512", hash)]]
