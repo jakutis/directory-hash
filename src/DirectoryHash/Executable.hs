@@ -5,16 +5,21 @@ import qualified Data.ByteString.Lazy
 import qualified Data.ByteString.Lazy.Char8
 import Data.Digest.Pure.SHA
 import qualified Data.HashMap.Strict
-import System.Directory
+import qualified System.Directory
 import System.Exit
 
 main :: [String] -> IO ()
 main [] = exitFailure
 main (directoryName:_) = do
-    files <- getDirectoryContents directoryName
-    result <- mapM (hashFile directoryName) (filter (\file -> file /= "." && file /= "..") files)
+    files <- findFiles directoryName
+    result <- mapM (hashFile directoryName) files
     Data.ByteString.Lazy.putStr $ encode $ result
     exitSuccess
+
+findFiles :: String -> IO [String]
+findFiles directoryName = do
+    files <- System.Directory.getDirectoryContents directoryName
+    return $ filter (\file -> file /= "." && file /= "..") files
 
 hashFile :: String -> String -> IO (Data.HashMap.Strict.HashMap String String)
 hashFile directoryName name = do
