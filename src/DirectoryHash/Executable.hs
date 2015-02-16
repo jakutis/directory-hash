@@ -12,7 +12,7 @@ import System.IO
 main :: [String] -> IO ()
 main [] = exitFailure
 main [directoryName] = do
-    files <- deepListFiles directoryName ""
+    files <- fmap sort (deepListFiles directoryName "")
     result <- hashFiles directoryName files (length files)
     Data.ByteString.Lazy.putStr $ encode $ result
     exitSuccess
@@ -38,7 +38,7 @@ deepListFiles pathPrefix path = do
             files <- getDirectoryContents (pathPrefix ++ path)
             prefixedFiles <- mapM (\x -> return $ path ++ "/" ++ x) (filter (\x -> x /= "." && x /= "..") files)
             allFiles <- mapM (deepListFiles pathPrefix) prefixedFiles
-            return $ sort $ concat allFiles
+            return $ concat allFiles
         False -> return [path]
 
 hashFile :: String -> String -> IO (Data.HashMap.Strict.HashMap String String)
