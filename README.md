@@ -41,10 +41,10 @@ Lists all paths that are not in directory.
 
 ### import directory all.file path backup-directory absolute-path > all.file
 
-1. Finds all new, changed and missing paths.
-2. Backs up files.
-2. Moves new and changed, deletes missing.
-3. Lists all paths and their hashes.
+0. Finds all new, changed and missing paths.
+0. Backs up files.
+0. Moves new and changed, deletes missing.
+0. Lists all paths and their hashes.
 
 ## Files
 
