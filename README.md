@@ -59,6 +59,6 @@ Lists all paths that are not in directory.
   * `mount --bind /some/directory.writable /some/directory`
   * `mount -o remount,ro,bind /some/directory`
   * `/some/directory` is a directory for user reads
-  * `/some/directory.writable` is *directory*
-  * `/some/directory.outgoing` is *backup-directory*
+  * `/some/directory.writable` is **directory**
+  * `/some/directory.outgoing` is **backup-directory**
   * `/some/directory.incoming` is a directory for user writes
