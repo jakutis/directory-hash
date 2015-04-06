@@ -50,3 +50,15 @@ Lists all paths that are not in directory.
 
 * `all.file`: hash + path
 * `changed.file`, `new.file`, `missing.file`: path
+
+## Tips
+
+* have your `all.file` in a git repository
+* have this workflow:
+  * `mkdir /some/directory /some/directory.writable /some/directory.outgoing /some/directory.incoming`
+  * `mount --bind /some/directory.writable /some/directory`
+  * `mount -o remount,ro,bind /some/directory`
+  * `/some/directory` is a directory for user reads
+  * `/some/directory.writable` is *directory*
+  * `/some/directory.outgoing` is *backup-directory*
+  * `/some/directory.incoming` is a directory for user writes
