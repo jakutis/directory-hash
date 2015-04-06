@@ -2,21 +2,51 @@
 
 [![Build Status](https://travis-ci.org/jakutis/directory-hash.svg)](https://travis-ci.org/jakutis/directory-hash)
 
+What is described below is not yet implemented.
+
+See [directory-hash-rust](https://github.com/jakutis/directory-hash-rust) for a more complete implementation.
+
 ## Operations
 
-What is described in this section is not yet implemented.
+### hash directory > all.file
 
-### hash directory > filename
+Lists all paths and their hashes.
 
-### update directory < filename > filename
+### update directory all.file < changed.file > all.file
 
-### add directory < filename > filename
+Checks if files are really existing and changed and adds lines to `all.file`.
 
-### remove directory < filename > filename
+### add directory all.file < new.file > all.file
 
-### changed directory < filename
+Checks if files are really new and adds lines to `all.file`.
 
-### new directory < filename
+### remove directory all.file < missing.file > all.file
 
-### missing directory < filename
+Checks if files are really missing and removes lines in `all.file`.
 
+### changed directory all.file[ path] > changed.file
+
+Path is by default "".
+Checks all hashes in `all.file` and lists paths with changed hashes.
+
+### new directory all.file[ path] > new.file
+
+Path is by default "".
+Lists all paths that are not in `all.file`.
+
+### missing directory all.file[ path] > missing.file
+
+Path is by default "".
+Lists all paths that are not in directory.
+
+### import directory all.file path backup-directory absolute-path > all.file
+
+1. Finds all new, changed and missing paths.
+2. Backs up files.
+2. Moves new and changed, deletes missing.
+3. Lists all paths and their hashes.
+
+## Files
+
+* `all.file`: hash + path
+* `changed.file`, `new.file`, `missing.file`: path
