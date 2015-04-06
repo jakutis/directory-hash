@@ -26,17 +26,17 @@ Checks if files are really missing and removes lines in `all.file`.
 
 ### changed directory all.file[ path] > changed.file
 
-Path is by default "".
+Path is by default "/".
 Checks all hashes in `all.file` and lists paths with changed hashes.
 
 ### new directory all.file[ path] > new.file
 
-Path is by default "".
+Path is by default "/".
 Lists all paths that are not in `all.file`.
 
 ### missing directory all.file[ path] > missing.file
 
-Path is by default "".
+Path is by default "/".
 Lists all paths that are not in directory.
 
 ### import directory all.file path backup-directory absolute-path > all.file
