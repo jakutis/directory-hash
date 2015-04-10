@@ -39,6 +39,11 @@ Lists all paths that are not in `all.file`.
 Path is by default "/".
 Lists all paths that are not in directory.
 
+### duplicate all.file[ path] > duplicate.file
+
+Path is by default "/".
+Lists all paths that have identical contents in directory.
+
 ### import directory all.file path backup-directory absolute-path > all.file
 
 0. Finds all new, changed and missing paths.
@@ -49,7 +54,7 @@ Lists all paths that are not in directory.
 ## Files
 
 * `all.file`: hash + path
-* `changed.file`, `new.file`, `missing.file`: path
+* `changed.file`, `new.file`, `missing.file`, `duplicate.file`: path
 
 ## Tips
 
