@@ -12,6 +12,14 @@ See [directory-hash-rust](https://github.com/jakutis/directory-hash-rust) for a 
 
 Lists all paths and their hashes.
 
+### fix_nonutf8_paths directory replacement
+
+Renames all paths whose string is not a valid utf8 string by replacing invalid utf8 parts with the `replacement` string.
+
+### list_nonutf8_paths directory
+
+Lists all paths whose string is not a valid utf8 string.
+
 ### update directory all.file < changed.file > all.file
 
 Checks if files are really existing and changed and adds lines to `all.file`.
