@@ -8,6 +8,10 @@ See [directory-hash-rust](https://github.com/jakutis/directory-hash-rust) for a 
 
 ## Operations
 
+### list_errors directory
+
+List all errors encountered while reading the filesystem directory tree.
+
 ### hash directory > all.file
 
 Lists all paths and their hashes.
